@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicación corredores</title>
+    <style>
+        body{
+            background-color: aquamarine;
+             position: relative;
+             left: 20px;
+             top: 20px;
+        }
+    </style>
+    <script>
+        function Validatexto(){
+            let text=document.getElementsByTagName("input")[0];
+            if (text.value.length<4) {
+                alert("El texto no puede tener menos de 4 caracteres");
+                text.style.backgroundColor="red";
+            }
+            else  text.style.backgroundColor="white";
+        }
+        function ValidateEmail() 
+                {
+                    let mail=document.getElementsByTagName("input")[1];
+                if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail.value))
+                {text.style.backgroundColor="white";
+                    return (true)
+                }
+                    alert("You have entered an invalid email address!")
+                    mail.style.backgroundColor="red";
+text.style.backgroundColor="white";
+                    return (false)
+                }
+      
+        function Crear(){
+            let imp=document.createElement("input");
+            let p=document.createElement("p");
+            imp.type="number";
+            imp.id="km";
+            p.id="pa";
+            p.innerHTML="¿Cuánta distancia aprox has corrido?"
+            document.getElementsByTagName("div")[0].appendChild(p);
+            document.getElementsByTagName("div")[0].appendChild(imp);
+        }
+        function Deletear(){
+            let kms=document.getElementById("km");
+            let par=document.getElementById("pa");
+            document.getElementsByTagName("div")[0].removeChild(kms);
+            document.getElementsByTagName("div")[0].removeChild(par);
+        }
+        function Llamada(){
+            let t=document.getElementsByTagName("input")[0].value;
+            let e=document.getElementsByTagName("input")[1].value;
+            Crear();
+            let kms=document.getElementById("km");
+            let pa=document.getElementById("pa");
+            if(kms.value==0){
+             alert("Te llamas "+t+", con email "+e);}
+            else {
+           alert("Te llamas "+t+", con email "+e+" y has corrido carreras de "+kms.value+" km");}
+        Deletear();
+        } 
+    </script>
+</head>
+<body>
+    <p>Nombre</p>
+    <input type="text" onblur="Validatexto()"><br>
+    <p>Email</p>
+    <input type="email" onblur="ValidateEmail()"><br>
+    <p>¿Has corrido antes?</p>
+    <input type="radio" name="corredor" value="si" id="si" onchange="Crear()" > 
+    <label for="si">Si</label>
+    <input type="radio" name="corredor" value="no" id="no" onchange="Deletear()">
+    <label for="no">No</label>
+    <div></div><br>
+    <button onclick="Llamada()">Enviar</button>
+</body>
+</html>
